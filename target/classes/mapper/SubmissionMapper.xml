@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cilicili.dao.SubmissionMapper" >
+  <resultMap id="BaseResultMap" type="cn.cilicili.entity.Submission" >
+    <id column="SUBMISSIONID" property="submissionid"  />
+    <result column="USERID" property="userid" jdbcType="VARCHAR" />
+    <result column="VIDEONAME" property="videoname" jdbcType="VARCHAR" />
+    <result column="IMGURL" property="imgurl" jdbcType="VARCHAR" />
+    <result column="FILEURL" property="fileurl" jdbcType="VARCHAR" />
+    <result column="FILESIZE" property="filesize" jdbcType="VARCHAR" />
+    <result column="FORMAT" property="format" jdbcType="VARCHAR" />
+    <result column="SUBMISSIONTIME" property="submissiontime" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="VIDEOLENGTH" property="videolength" jdbcType="VARCHAR" />
+    <result column="TYPEID" property="typeid"  />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SUBMISSIONID, USERID, VIDEONAME, IMGURL, FILEURL, FILESIZE, FORMAT, SUBMISSIONTIME, 
+    STATE, VIDEOLENGTH, TYPEID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.cilicili.entity.SubmissionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from TB_SUBMISSION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from TB_SUBMISSION
+    where SUBMISSIONID = #{submissionid}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from TB_SUBMISSION
+    where SUBMISSIONID = #{submissionid}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.cilicili.entity.SubmissionExample" >
+    delete from TB_SUBMISSION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.cilicili.entity.Submission" >
+    insert into TB_SUBMISSION (SUBMISSIONID, USERID, VIDEONAME,
+      IMGURL, FILEURL, FILESIZE, 
+      FORMAT, SUBMISSIONTIME, STATE, 
+      VIDEOLENGTH, TYPEID)
+    values (#{submissionid}, #{userid,jdbcType=VARCHAR}, #{videoname,jdbcType=VARCHAR},
+      #{imgurl,jdbcType=VARCHAR}, #{fileurl,jdbcType=VARCHAR}, #{filesize,jdbcType=VARCHAR}, 
+      #{format,jdbcType=VARCHAR}, #{submissiontime,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{videolength,jdbcType=VARCHAR}, #{typeid})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.cilicili.entity.Submission" >
+    insert into TB_SUBMISSION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="submissionid != null" >
+        SUBMISSIONID,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="videoname != null" >
+        VIDEONAME,
+      </if>
+      <if test="imgurl != null" >
+        IMGURL,
+      </if>
+      <if test="fileurl != null" >
+        FILEURL,
+      </if>
+      <if test="filesize != null" >
+        FILESIZE,
+      </if>
+      <if test="format != null" >
+        FORMAT,
+      </if>
+      <if test="submissiontime != null" >
+        SUBMISSIONTIME,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="videolength != null" >
+        VIDEOLENGTH,
+      </if>
+      <if test="typeid != null" >
+        TYPEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="submissionid != null" >
+        #{submissionid},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="videoname != null" >
+        #{videoname,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileurl != null" >
+        #{fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="filesize != null" >
+        #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="format != null" >
+        #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="submissiontime != null" >
+        #{submissiontime,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="videolength != null" >
+        #{videolength,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        #{typeid},
+      </if>
+    </trim>
+  </insert>
+  
+  <insert id="insertSubmission" parameterType="cn.cilicili.entity.Submission" >
+    insert into TB_SUBMISSION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      	SUBMISSIONID,
+      <if test="userid!= null" >
+        USERID,
+      </if>
+      <if test="videoname!= null" >
+        VIDEONAME,
+      </if>
+      <if test="imgurl!= null" >
+        IMGURL,
+      </if>
+      <if test="fileurl!= null" >
+        FILEURL,
+      </if>
+      <if test="filesize!= null" >
+        FILESIZE,
+      </if>
+      <if test="format!= null" >
+        FORMAT,
+      </if>
+      <if test="submissiontime!= null" >
+        SUBMISSIONTIME,
+      </if>
+      <if test="state!= null" >
+        STATE,
+      </if>
+      <if test="videolength!= null" >
+        VIDEOLENGTH,
+      </if>
+      <if test="typeid!= null" >
+        TYPEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{submissionid},
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="videoname!= null" >
+        #{videoname,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl!= null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileurl!= null" >
+        #{fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="filesize!= null" >
+        #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="format!= null" >
+        #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="submissiontime!= null" >
+        #{submissiontime,jdbcType=VARCHAR},
+      </if>
+      <if test="state!= null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+       <if test="videolength!= null" >
+        #{videolength,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid!= null" >
+        #{typeid},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="countByExample" parameterType="cn.cilicili.entity.SubmissionExample" resultType="java.lang.Integer" >
+    select count(*) from TB_SUBMISSION
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update TB_SUBMISSION
+    <set >
+      <if test="record.submissionid != null" >
+        SUBMISSIONID = #{record.submissionid},
+      </if>
+      <if test="record.userid != null" >
+        USERID = #{record.userid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videoname != null" >
+        VIDEONAME = #{record.videoname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgurl != null" >
+        IMGURL = #{record.imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileurl != null" >
+        FILEURL = #{record.fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filesize != null" >
+        FILESIZE = #{record.filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.format != null" >
+        FORMAT = #{record.format,jdbcType=VARCHAR},
+      </if>
+      <if test="record.submissiontime != null" >
+        SUBMISSIONTIME = #{record.submissiontime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videolength != null" >
+        VIDEOLENGTH = #{record.videolength,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeid != null" >
+        TYPEID = #{record.typeid},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update TB_SUBMISSION
+    set SUBMISSIONID = #{record.submissionid},
+      USERID = #{record.userid,jdbcType=VARCHAR},
+      VIDEONAME = #{record.videoname,jdbcType=VARCHAR},
+      IMGURL = #{record.imgurl,jdbcType=VARCHAR},
+      FILEURL = #{record.fileurl,jdbcType=VARCHAR},
+      FILESIZE = #{record.filesize,jdbcType=VARCHAR},
+      FORMAT = #{record.format,jdbcType=VARCHAR},
+      SUBMISSIONTIME = #{record.submissiontime,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      VIDEOLENGTH = #{record.videolength,jdbcType=VARCHAR},
+      TYPEID = #{record.typeid}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.cilicili.entity.Submission" >
+    update TB_SUBMISSION
+    <set >
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="videoname != null" >
+        VIDEONAME = #{videoname,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        IMGURL = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileurl != null" >
+        FILEURL = #{fileurl,jdbcType=VARCHAR},
+      </if>
+      <if test="filesize != null" >
+        FILESIZE = #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="format != null" >
+        FORMAT = #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="submissiontime != null" >
+        SUBMISSIONTIME = #{submissiontime,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="videolength != null" >
+        VIDEOLENGTH = #{videolength,jdbcType=VARCHAR},
+      </if>
+      <if test="typeid != null" >
+        TYPEID = #{typeid},
+      </if>
+    </set>
+    where SUBMISSIONID = #{submissionid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.cilicili.entity.Submission" >
+    update TB_SUBMISSION
+    set USERID = #{userid,jdbcType=VARCHAR},
+      VIDEONAME = #{videoname,jdbcType=VARCHAR},
+      IMGURL = #{imgurl,jdbcType=VARCHAR},
+      FILEURL = #{fileurl,jdbcType=VARCHAR},
+      FILESIZE = #{filesize,jdbcType=VARCHAR},
+      FORMAT = #{format,jdbcType=VARCHAR},
+      SUBMISSIONTIME = #{submissiontime,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      VIDEOLENGTH = #{videolength,jdbcType=VARCHAR},
+      TYPEID = #{typeid}
+    where SUBMISSIONID = #{submissionid}
+  </update>
+</mapper>
