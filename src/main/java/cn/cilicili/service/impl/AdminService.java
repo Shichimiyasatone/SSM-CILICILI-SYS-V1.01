@@ -108,13 +108,9 @@ public class AdminService implements IAdminService {
 		if (admin != null) {
 			if (admin.getPassword().equals(password)) {
 				return admin;
-			} else {
-				return null;
 			}
-		} else {
-			return null;
 		}
-
+		return null;
 	}
 
 	@Override

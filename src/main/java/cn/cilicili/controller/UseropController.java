@@ -67,7 +67,7 @@ public class UseropController {
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				// 解决上传文件名的中文乱码
 				upload.setHeaderEncoding("UTF-8");
-				factory.setSizeThreshold(1024 * 1024 * 500);// 设置内存的临界值为500K
+				factory.setSizeThreshold(1024 * 1024 * 500);// 设置内存的临界值为500M
 				File linshi = new File("E:\\linshi");// 当超过500K的时候，存到一个临时文件夹中
 				factory.setRepository(linshi);
 				upload.setSizeMax(1024 * 1024 * 500);// 设置上传的文件总的大小不能超过500M

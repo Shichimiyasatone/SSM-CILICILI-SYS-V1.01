@@ -14,7 +14,7 @@
 <meta name="keyword"
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-<title>Hi视频后台管理</title>
+<title>CL视频后台管理</title>
 
 <!-- Bootstrap core CSS -->
 <link href="manage/assets/css/bootstrap.css" rel="stylesheet">
@@ -52,7 +52,7 @@
 					data-original-title="显示/隐藏导航"></div>
 			</div>
 			<!--logo start-->
-			<a onclick="home()" class="logo" href="adminhome.htm" target="mainframe"><b>Hi视频后台</b></a>
+			<a onclick="home()" class="logo" href="adminhome.htm" target="mainframe"><b>CL视频后台</b></a>
 			<!--logo end-->
 
 			<div class="top-menu">
@@ -141,7 +141,7 @@
 				$('#red').click();
 				var unique_id = $.gritter.add({
 					// (string | mandatory) the heading of the notification
-					title: '欢迎使用Hi视频后台管理!',
+					title: '欢迎使用CL视频后台管理!',
 					// (string | mandatory) the text inside the notification
 					text: '您可以在此页面管理视频信息、用户信息、用户投稿、视频评论、视频弹幕。',
 					// (string | optional) the image to display on the left
@@ -323,6 +323,7 @@
 				$("#red").click();
 			}
 		</script>
+	</section>
 </body>
 
 </html>

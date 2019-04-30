@@ -199,7 +199,7 @@
     </if>
   </select>
   <select id="countnewuser" resultType="java.lang.Integer">
-    SELECT count(*) FROM tb_user t WHERE to_days(now())-to_days(t.registertime)>7
+    SELECT count(*) FROM tb_user t WHERE to_days(now())-to_days(t.registertime)<![CDATA[<=]]>7
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
     update TB_USER

@@ -30,7 +30,6 @@
 		</div>
 	</form>
 
-	<input type="hidden" id="typeid" value="${typeid}">
 	<table class="table table-hover">
 		<thead style="background-color: #E9E9E9">
 			<tr>
@@ -114,7 +113,8 @@
 			var vs = $('select  option:selected').val();
 			window.location.href = "../1/" + vs + ".htm";
 		}
-		$().ready(function() {
+		// 当总页数为1时，不显示分页插件
+		$(function() {
 			var s = $('#typeid').val();
 			$('#ss').val(s);
 			var pagen=parseInt($('#pageNum').val());
@@ -132,7 +132,7 @@
 					window.location.href="../"+current+"/"+$('#typeid').val()+".htm";
 				}
 			});
-		})
+		});
 		function pass(subid) {
 			$.ajax({
 				type : "get",

@@ -164,7 +164,7 @@ public class AdminopController {
 				file.renameTo(new File(filename + "\\" + mid + uptime + hou)); // 改名
 				GetImgUrl.processImg(new File(filename + "\\" + mid + uptime
 						+ hou).getAbsolutePath(),
-						"src/main/java/utils/ffmpeg.exe");
+						"src/main/java/cn/cilicili/utils/ffmpeg.exe");
 				Video video = new Video(videoname, manageid, "uploadfiles\\"
 						+ mid + uptime + ".jpg", "uploadfiles\\" + mid + uptime
 						+ hou, filesize, format, 0, 0, uptime, typeid,

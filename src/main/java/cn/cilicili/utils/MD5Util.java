@@ -1,9 +1,5 @@
 package cn.cilicili.utils;
 
-/**
- * Copy by Sam on 17/10/07.
- */
-
 import java.security.MessageDigest;
 
 public class MD5Util {  
