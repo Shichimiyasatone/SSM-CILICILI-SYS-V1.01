@@ -117,7 +117,7 @@ public class UserLoginAndRegisterController {
 			return "redirect:/index.html";
 		}else{
 			model.addAttribute("msg", "手机号或获取验有误~！");
-			return "/customer/loginnote.jsp";
+			return "/customer/loginnote";
 		}
 	}
 

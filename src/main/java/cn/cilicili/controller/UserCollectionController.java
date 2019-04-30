@@ -46,11 +46,11 @@ public class UserCollectionController {
 			model.addAttribute("islast", islast);
 			model.addAttribute("typeid", 0);
 			model.addAttribute("userid", userid);
-			return "/customer/CollectionIframe.jsp";
+			return "/customer/CollectionIframe";
 	}
 	@RequestMapping("/customer/{vid}/{uid}/dislike")
 	public String dislike(@PathVariable String vid, @PathVariable String uid,Model model) {
 		boolean res = usercollectionService.delUsercollection(vid,uid);
-		return "redirect:/customer/templ.jsp";
+		return "redirect:/customer/templ";
 	}
 }

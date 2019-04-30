@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2019-04-30 09:44:25
+Date: 2019-04-30 10:14:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -46,7 +46,7 @@ CREATE TABLE `tb_barrage` (
   KEY `FK_BARRAGE_VIDEOID` (`VIDEOID`),
   CONSTRAINT `FK_BARRAGE_USERID` FOREIGN KEY (`USERID`) REFERENCES `tb_user` (`USERID`),
   CONSTRAINT `FK_BARRAGE_VIDEOID` FOREIGN KEY (`VIDEOID`) REFERENCES `tb_video` (`VIDEOID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_barrage
@@ -71,7 +71,7 @@ CREATE TABLE `tb_submission` (
   PRIMARY KEY (`SUBMISSIONID`),
   KEY `FK_SUBMISSION_USERID` (`USERID`),
   CONSTRAINT `FK_SUBMISSION_USERID` FOREIGN KEY (`USERID`) REFERENCES `tb_user` (`USERID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_submission
@@ -136,7 +136,7 @@ CREATE TABLE `tb_video` (
   PRIMARY KEY (`VIDEOID`),
   KEY `FK_TYPEID` (`TYPEID`),
   CONSTRAINT `FK_TYPEID` FOREIGN KEY (`TYPEID`) REFERENCES `tb_videotype` (`TYPEID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_video
@@ -176,3 +176,8 @@ CREATE TABLE `tb_videotype` (
 -- ----------------------------
 -- Records of tb_videotype
 -- ----------------------------
+INSERT INTO `tb_videotype` VALUES ('1', '娱乐');
+INSERT INTO `tb_videotype` VALUES ('2', '游戏');
+INSERT INTO `tb_videotype` VALUES ('3', '动画');
+INSERT INTO `tb_videotype` VALUES ('4', '音乐');
+INSERT INTO `tb_videotype` VALUES ('5', '舞蹈');
