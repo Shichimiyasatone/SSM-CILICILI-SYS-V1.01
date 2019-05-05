@@ -69,7 +69,7 @@ var clock = '';
 var nums = 60;
 var btn;
 function sendCode(thisBtn) {
-	var phone = /^1[3|4|5|7|8][0-9]\d{8}$/;
+	var phone = /^1[3|4|5|7|8|6][0-9]\d{8}$/;
 	var tel={"tel":$("#tel2").val()};
 	if(phone.test($("#tel2").val())){
 		$.ajax({

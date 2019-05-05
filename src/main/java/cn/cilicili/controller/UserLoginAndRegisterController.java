@@ -6,6 +6,9 @@ import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +22,11 @@ import cn.cilicili.utils.PhoneCodeUtils;
 
 @Controller
 public class UserLoginAndRegisterController {
-	
+
+
+	@Autowired
+	private MailSender mailSender;
+
 	private IUserService userService;
 
 	public IUserService getUserService() {
@@ -42,6 +49,7 @@ public class UserLoginAndRegisterController {
 				}else{
 					user.setSign(tel+":"+yzm);	
 				}
+//				sendSimpleCode("*@163.com",yzm,"注册账号");
 				/*try {
 					SmsNotificationUtils.sendMessage(tel, yzm);
 				} catch (Exception e) {
@@ -72,6 +80,8 @@ public class UserLoginAndRegisterController {
 				}else{
 					user.setSign(tel+":"+yzm);	
 				}
+//				邮箱发送验证码
+//				MailUtil.sendSimpleCode("*@qq.com",yzm,"登录账号");
 				/*try {
 					SmsNotificationUtils.sendMessage(tel, yzm);
 				} catch (Exception e) {
@@ -146,6 +156,18 @@ public class UserLoginAndRegisterController {
 		}
 		System.out.println("注册成功");
 		return "/customer/registernote";
+	}
+
+	public boolean sendSimpleCode(String to,String code,String op) {
+		SimpleMailMessage message = new SimpleMailMessage();
+		// 发送者邮箱需与mail.properties里的user对应，QQ邮箱需要添加@qq.com后缀
+		message.setFrom("*@qq.com");
+		message.setTo(to);
+		message.setSubject("Cilicili视频网验证码");
+		message.setText("【CL】您正在进行"+op+"操作，验证码:"+code+"。（验证码告知他人将导致帐号被盗，请勿泄露）");
+		mailSender.send(message);
+		System.out.println("邮件发送成功");
+		return true;
 	}
 	
 }

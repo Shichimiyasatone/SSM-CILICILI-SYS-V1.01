@@ -1,6 +1,4 @@
-/**
- * Created by LELK on 2017/5/3.
- */
+
 'use strict';
 $(document).ready(function() {
 	

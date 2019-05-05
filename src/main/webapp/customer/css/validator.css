@@ -112,7 +112,7 @@ label.control-label{
 
 /* 中等屏幕（桌面显示器，大于等于992px） */
 @media (min-width: 992px) {
-
+}
 
 /* 大屏幕（大桌面显示器，大于等于1200px） */
 @media (min-width: 1200px) {

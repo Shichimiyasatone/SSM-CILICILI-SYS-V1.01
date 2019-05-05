@@ -3,9 +3,6 @@ package cn.cilicili.utils;
 
 import java.util.Random;
 
-/**
- * Created by ZWJ on 2017/10/12/0012.
- */
 public class PhoneCodeUtils {
     /**
      * 获取6位随机生成的验证码

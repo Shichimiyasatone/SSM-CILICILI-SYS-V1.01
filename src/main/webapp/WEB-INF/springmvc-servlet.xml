@@ -17,7 +17,7 @@
 	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@ MyBatis配置 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 	<!-- mybatis配置 连接池 -->
 
-	<util:properties id="cfg" location="classpath:configs.properties"></util:properties>
+	<util:properties id="cfg" location="classpath:configs.properties"/>
 	<bean id="dataSource"
 		  class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
 		  destroy-method="close" lazy-init="false">
@@ -93,6 +93,28 @@
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView"></property>
 		<property name="order" value="1"></property>
+	</bean>
+
+
+	<!-- 配置mailSender -->
+	<util:properties id="mail" location="classpath:mail.properties"/>
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl" lazy-init="false">
+		<property name="host" value="#{mail.host}"/>
+		<property name="port" value="#{mail.port}"/>
+		<property name="username" value="#{mail.musername}"/>
+		<property name="password" value="#{mail.password}"/>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+                <!-- 设置超时时间不宜过短,否则将出现连接超时异常 -->
+				<!--<prop key="mail.smtp.timeout">25000</prop>-->
+				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="mail.smtp.socketFactory.port">465</prop>
+				<!-- 如果是网易邮箱， mail.smtp.starttls.enable 设置为 false-->
+                <!-- QQ邮箱需要SSL协议，网易不需要 -->
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
 	</bean>
 	
 </beans>
